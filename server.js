@@ -25,6 +25,7 @@ const bodyParser = require("body-parser");
 
 var userRoutes = require('./routes/createProfile');
 var signUp =  require('./routes/signUp');
+var getUser = require('./routes/getProfile');
 
 // bodyParser = {
 //   json: {limit: '50mb', extended: true},
@@ -64,9 +65,10 @@ app.use(bodyParser.urlencoded({ limit:'100mb', extended: true }));
   
 app.use("/createUser",userRoutes);
 app.use("/signUp",signUp);
-app.post("/hello",function(req,res){
-  res.send('Hello World');
-})
+app.use("/getUser",getUser);
+// app.post("/hello",function(req,res){
+//   res.send('Hello World');
+// })
 
 const port = process.env.PORT || 3000;
 
