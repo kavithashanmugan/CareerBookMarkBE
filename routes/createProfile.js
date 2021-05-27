@@ -3,39 +3,44 @@
 // const express=()
 
 const express = require('express')
+
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const User = require('../models/users');
+const UserDetails = require('../models/userDetails');
 
-router.post('/createUser',(req,res,next)=>{
+router.post('/createProfile', (req, res, next) => {
     console.log("creating...")
-    const user = new User({
-        _id:new mongoose.Types.ObjectId(),
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+    const userDetails = new UserDetails({
+        fullName: req.body.fullName,
         phoneNumber: req.body.phoneNumber,
+        website: req.body.website,
         emailId: req.body.emailId,
         jobTitle: req.body.jobTitle,
         location: req.body.location,
-        summary: req.body.summary
-    }); 
+        summary: req.body.summary,
+        experience: req.body.experience,
+        education: req.body.education
+    });
     //_id:new mongoose.Types.ObjectId(),
     //,resume:req.files.resume
-        console.log("user...",user)
-        user.save()
-        .then(result=>{
-            console.log(result);
-            res.status(201).json({
-                message:"created user successfully"
-            });
-        })
-        .catch(err=>{
-            console.log(err);
-            res.status(500).json({
-                error:err
-            })
-        })
+    console.log("user Details...", userDetails)
+    userDetails.save()
+    res.status(200).send({
+        "status": true
+    });
+    // .then(result => {
+    //     console.log(result);
+    //     res.status(201).json({
+    //         message: "created user successfully"
+    //     });
+    // })
+    // .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({
+    //         error: err
+    //     })
+    // })
 
 });
 

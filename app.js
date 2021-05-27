@@ -14,3 +14,18 @@
 
 
 // module.exports = app;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 'Prajin@2019';
+
+bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(myPlaintextPassword, salt, function(err, hash) {
+        // Store hash in your password DB.
+        console.log("hash",hash)
+        bcrypt.compare(myPlaintextPassword, hash, function(err, result) {
+            // result == true
+            console.log("result",result)
+        });
+    });
+});
+// const someOtherPlaintextPassword = 'not_bacon';

@@ -53,15 +53,17 @@ db.once("open", function() {
   console.log("Connection Successful!");
 });
 
-const userSchema = mongoose.Schema({
-    _id:mongoose.Types.ObjectId,
-    firstName:String,
-    lastName:String,
+const userDetailsSchema = mongoose.Schema({
+    fullName:String,
     phoneNumber:Number,
+    website:String,
     emailId:String,
     jobTitle:String,
     location:String,
-    summary:String
+    summary:String,
+    experience:String,
+    education:String
+
 });
 //,resume:Buffer
-module.exports = mongoose.model('User',userSchema,"myUsers");
+module.exports = mongoose.model('UserDetails',userDetailsSchema);

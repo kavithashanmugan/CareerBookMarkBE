@@ -17,39 +17,39 @@ var cors = require('cors')
 
 
 mongoose.connect("mongodb://localhost:27017/myDB", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true
+    useUnifiedTopology: true,
+    useNewUrlParser: true
 });
 
 const bodyParser = require("body-parser");
 
-var userRoutes = require('./routes/createProfile');
-var signUp =  require('./routes/signUp');
-var getUser = require('./routes/getProfile');
+var createProfile = require('./routes/createProfile');
+var signUp = require('./routes/signUp');
+var getProfile = require('./routes/getProfile');
+var login = require('./routes/login');
 
 // bodyParser = {
 //   json: {limit: '50mb', extended: true},
 //   urlencoded: {limit: '50mb', extended: true}
 // }
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 var allowCrossDomain = function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Cache-Control");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Cache-Control");
 
-  // intercept OPTIONS method
-  if ('OPTIONS' == req.method) {
-    res.send(200);
-  }
-  else {
-    next();
-  }
+    // intercept OPTIONS method
+    if ('OPTIONS' == req.method) {
+        res.send(200);
+    } else {
+        next();
+    }
 };
 app.use(allowCrossDomain);
-app.use(bodyParser.json({limit:'100mb'}));
-app.use(bodyParser.urlencoded({ limit:'100mb', extended: true }));
+app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 // app.use((req, res, next) => {
 //     res.header("Access-Control-Allow-Origin", "*");
 //     res.header(
@@ -62,20 +62,21 @@ app.use(bodyParser.urlencoded({ limit:'100mb', extended: true }));
 //     }
 //     next();
 //   });
-  
-app.use("/createUser",userRoutes);
-app.use("/signUp",signUp);
-app.use("/getUser",getUser);
+
+app.use("/api", createProfile);
+app.use("/api", signUp);
+app.use("/api", getProfile);
+app.use("/api", login);
 // app.post("/hello",function(req,res){
 //   res.send('Hello World');
 // })
 
 const port = process.env.PORT || 3000;
 
- const server = http.createServer(app);
+const server = http.createServer(app);
 //app.listen(port, console.log(`Example app listening on port ${port}!`));
 
- server.listen(port,console.log("hitting... 3000"));
+server.listen(port, console.log("hitting... 3000"));
 // set our port
 // const port = 3000;
 // configuration ===========================================
@@ -97,13 +98,13 @@ const port = process.env.PORT || 3000;
 // grab the student model we just created
 // var Student = require('./app/models/student');
 // app.get('/api/students', function(req, res) {
-   // use mongoose to get all students in the database
-   // Student.find(function(err, students) {
-      // if there is an error retrieving, send the error.
-      // nothing after res.send(err) will execute
-      // if (err)
-      //    res.send(err);
-      // res.json(students); // return all students in JSON format
+// use mongoose to get all students in the database
+// Student.find(function(err, students) {
+// if there is an error retrieving, send the error.
+// nothing after res.send(err) will execute
+// if (err)
+//    res.send(err);
+// res.json(students); // return all students in JSON format
 //    });
 // });
 // startup our app at http://localhost:3000

@@ -3,23 +3,24 @@ const express = require('express')
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const User = require('../models/users');
+const UserDetails = require('../models/userDetails');
 
-router.post('/getUser',function(req,res){
+router.post('/getProfile', async function(req, res) {
     console.log("user...connected..saved ..hello..")
-    var emailId = req.body.id;
+    var emailId = req.body.emailId;
 
-    User.find(({"_id":emailId}),function(err,result){
-        if(err){
-        console.log(err)
+    await UserDetails.find(({
+        emailId: emailId
+    }), function(err, result) {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(result)
         }
-        else {
-        console.log(result)
-        }
-    }).then(result=>{
+    }).then(result => {
         res.json(result)
     })
-    
+
 })
 
 module.exports = router;
