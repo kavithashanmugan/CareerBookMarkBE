@@ -16,7 +16,7 @@ const http = require('http');
 var cors = require('cors')
 
 
-mongoose.connect("mongodb://localhost:27017/myDB", {
+mongoose.connect("mongodb://localhost:27017/careerBookMarkDB", {
     useUnifiedTopology: true,
     useNewUrlParser: true
 });
