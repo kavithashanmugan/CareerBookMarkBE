@@ -27,6 +27,8 @@ var createProfile = require('./routes/createProfile');
 var signUp = require('./routes/signUp');
 var getProfile = require('./routes/getProfile');
 var login = require('./routes/login');
+var postJob = require('./routes/postJob');
+var getAllJobs = require('./routes/getAllJobs');
 
 // bodyParser = {
 //   json: {limit: '50mb', extended: true},
@@ -67,6 +69,8 @@ app.use("/api", createProfile);
 app.use("/api", signUp);
 app.use("/api", getProfile);
 app.use("/api", login);
+app.use("/api", postJob);
+app.use("/api", getAllJobs);
 // app.post("/hello",function(req,res){
 //   res.send('Hello World');
 // })

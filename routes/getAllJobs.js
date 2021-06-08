@@ -1,17 +1,15 @@
 const { response } = require('express');
 const express = require('express')
 const router = express.Router();
-const mongoose = require('mongoose');
 
-const UserDetails = require('../models/userDetails');
+const job = require('../models/job');
 
-router.post('/getProfile', async function(req, res) {
-    console.log("user...connected..saved ..hello..")
+router.get('/getAllJobs', async function(req, res) {
+    console.log("getting all jobs...")
 
-    var emailId = req.body.emailId;
 
-    await UserDetails.find(({
-        emailId: emailId
+    await job.find(({
+
     }), function(err, result) {
         if (err) {
             console.log(err)
