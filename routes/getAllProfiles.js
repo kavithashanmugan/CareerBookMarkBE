@@ -5,12 +5,11 @@ const mongoose = require('mongoose');
 
 const UserProfile = require('../models/userProfile');
 
-router.get('/getProfile/:userId', function(req, res) {
-    console.log("requesting for user",JSON.stringify(req.params.userId))
+router.get('/getAllProfiles', function(req, res) {
+    console.log("requesting for user",req.params)
     //const selectedId = req.body.userId;
-    const filter = {userId: req.params.userId};
-   // console.log("filter",filter);
-     UserProfile.findOne(filter).exec(function(err, result) {
+    //const filter = { "userId": JSON.stringify(selectedId)};
+     UserProfile.find({}).exec(function(err, result) {
         if (err) {
             console.log(err)
         } else {
