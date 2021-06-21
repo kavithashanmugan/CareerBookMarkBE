@@ -9,8 +9,8 @@ const mongoose = require('mongoose');
 
 const UserProfile = require('../models/userProfile');
 
-router.post('/createProfile', (req, res, next) => {
-    console.log("creating user profile...",req.body)
+router.post('/updateProfile', (req, res, next) => {
+    console.log("updating user profile...",req.body)
 
     const userProfile = {
         
@@ -29,7 +29,9 @@ router.post('/createProfile', (req, res, next) => {
         "userId": req.body.userId
     }
 
-    console.log("user Profile...",{ "$set":userProfile})
+    //_id:new mongoose.Types.ObjectId(),
+    //,resume:req.files.resume
+    console.log("updating Profile...",{ "$set":userProfile})
     UserProfile.findOneAndUpdate(userId,userProfile).exec(function (err, docs) {
 if (err){
 console.log(err)
@@ -43,10 +45,7 @@ res.status(200).send({
         });
 }
 });
- 
-     
-
+   
 });
 
 module.exports = router;
-

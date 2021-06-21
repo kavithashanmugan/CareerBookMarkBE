@@ -14,11 +14,21 @@ const app = express();
 var mongoose = require('mongoose');
 const http = require('http');
 var cors = require('cors');
+const dotenv = require('dotenv').config();
 
-
-mongoose.connect("mongodb://localhost:27017/careerBookMarkDB", {
+//mongodb://localhost:27017/careerBookMarkDB
+var mongoDB = process.env.MONGODB_URI;
+console.log("mongodb",mongoDB)
+mongoose.connect(mongoDB, {
     useUnifiedTopology: true,
     useNewUrlParser: true
+});
+var db = mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+
+db.once("open", function() {
+    console.log("Connection Successful!");
 });
 
 const bodyParser = require("body-parser");
@@ -31,6 +41,13 @@ var login = require('./routes/login');
 var postJob = require('./routes/postJob');
 var getAllJobs = require('./routes/getAllJobs');
 var getAllProfiles = require('./routes/getAllProfiles');
+var signUpCompanyFireBase = require('./routes/signUpCompanyFireBase');
+var searchJobs = require('./routes/searchJobs');
+var updateProfile = require('./routes/updateProfile');
+var getMatchingJobsbySkills = require('./routes/getMatchingJobsbySkills'); 
+var createCompanyProfile = require('./routes/createCompanyProfile');
+var getCompanyProfile = require('./routes/getCompanyProfile');
+var updateCompanyProfile = require('./routes/updateCompanyProfile');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -58,7 +75,15 @@ app.use("/api", getProfile);
 app.use("/api", login);
 app.use("/api", postJob);
 app.use("/api", getAllJobs);
-app.use("/api",getAllProfiles)
+app.use("/api",getAllProfiles);
+app.use("/api",signUpCompanyFireBase);
+app.use("/api",searchJobs);
+app.use("/api",updateProfile);
+app.use("/api",updateCompanyProfile);
+app.use("/api",getMatchingJobsbySkills);
+app.use("/api",createCompanyProfile);
+app.use("/api",getCompanyProfile);
+
 const port = process.env.PORT|| 4000;;
 console.log(port)
 app.listen(port,()=>{console.log(`app listening on port ${port}`)
