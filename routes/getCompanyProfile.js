@@ -1,4 +1,4 @@
-const { response } = require('express');
+
 const express = require('express')
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -7,9 +7,9 @@ const mongoose = require('mongoose');
 const CompanyProfile = require('../models/companyProfile');
 
 router.get('/getCompanyProfile/:hirerId', function(req, res) {
-    console.log("requesting for company user",JSON.stringify(req.params.userId))
+    console.log("requesting for company user",JSON.stringify(req.params.hirerId))
     //const selectedId = req.body.userId;
-    const filter = {userId: req.params.hirerId};
+    const filter = {hirerId: req.params.hirerId};
    // console.log("filter",filter);
    CompanyProfile.findOne(filter).exec(function(err, result) {
         if (err) {

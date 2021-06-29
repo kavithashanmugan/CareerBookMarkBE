@@ -15,7 +15,8 @@ const userProfileSchema = mongoose.Schema({
     summary: String,
     experience: String,
     education: String,
-    skills:String
+    skills:String,
+    appliedJobs:[Object]
 
 },
 { typeKey: '$type' });

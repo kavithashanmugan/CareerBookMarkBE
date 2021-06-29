@@ -15,6 +15,7 @@ router.post('/postJob', async(req, res, next) => {
 
     const jobs = new Jobs({
         jobId: jobId,
+        hirerId:req.body.hirerId,
         jobTitle: req.body.jobTitle,
         Company: req.body.Company,
         companyDesc: req.body.companyDesc,
@@ -24,12 +25,12 @@ router.post('/postJob', async(req, res, next) => {
         jobStartDate: req.body.jobStartDate,
         jobRequirements: req.body.jobRequirements,
         jobSummary: req.body.jobSummary,
-        jobPostedDate:req.body.jobPostedDate
+        jobPostedDate:req.body.jobPostedDate,
+        jobStatus:req.body.jobStatus
+        
     });
 console.log(jobs,"jobsssss")
-    //_id:new mongoose.Types.ObjectId(),
-    //,resume:req.files.resume
-    //console.log("job Details...", jobs)
+   
 
      jobs.save(function (err, docs) {
         if (err){

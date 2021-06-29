@@ -24,9 +24,11 @@ console.log("jobsearch",jobTitleSearch)
             console.log(err)
         } else {
             console.log(result)
+            res.status(200).json({
+                "status": true,
+                "result":result
+            });
         }
-    }).then(result => {
-        res.json(result)
     })
 
 })

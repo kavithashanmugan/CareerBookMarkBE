@@ -16,7 +16,7 @@ const mongoose = require('mongoose');
 // });
 
 const hirerProfileSchema = mongoose.Schema({
-    userId:String,
+    hirerId:String,
     companyName: String,
     companyType: String,
     companyWebsite: String,

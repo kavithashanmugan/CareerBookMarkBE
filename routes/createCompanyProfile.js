@@ -23,14 +23,14 @@ router.post('/createCompanyProfile', (req, res, next) => {
         "companyDetails": req.body.companyDetails,
         "employees":req.body.employees
     };
-    const userId = {
-        "userId": req.body.userId
+    const hirerId = {
+        "hirerId": req.body.hirerId
     }
-
+console.log("hirer id...,",hirerId)
     //_id:new mongoose.Types.ObjectId(),
     //,resume:req.files.resume
     console.log("user Profile...",{ "$set":companyProfile})
-    CompanyProfile.findOneAndUpdate(userId,companyProfile).exec(function (err, docs) {
+    CompanyProfile.findOneAndUpdate(hirerId,companyProfile).exec(function (err, docs) {
 if (err){
 console.log(err)
 res.status(500).send(err);

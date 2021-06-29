@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 // });
 
 const jobSchema = mongoose.Schema({
-    userId:String,
+    hirerId:String,
     jobId: String,
     jobTitle: String,
     Company: String,
@@ -26,9 +26,10 @@ const jobSchema = mongoose.Schema({
     jobRequirements: String,
     jobSummary: String,
     jobPostedDate:String,
-    appliedCandidates:[String],
-    shortlistedCandidates:[String],
-    rejectedCandidates:[String]
+    jobStatus:String,
+    appliedCandidates:[Object],
+    shortlistedCandidates:[Object],
+    rejectedCandidates:[Object]
 });
 
 module.exports = mongoose.model('Jobs', jobSchema);
