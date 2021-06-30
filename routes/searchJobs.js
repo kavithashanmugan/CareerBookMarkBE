@@ -12,13 +12,7 @@ var jobTitleSearch = req.body.jobKeyWords;
 var location = req.body.location;
 var jobType = req.body.jobType;
 console.log("jobsearch",jobTitleSearch)
-// var filter = {
-//     $and:[{"jobLocation":location},{"jobType":jobType}]
 
-// }
-// console.log("Filter",filter)
-//{$or:[{"jobTitle":{$regex:`${jobTitleSearch}`,$options:'i'}},{"Company":{$regex:`${jobTitleSearch}`,$options:'i'}}]},
-//var filter = [{"jobTitle":{$regex:`${jobTitleSearch}`,$options:'i'}},{"Company":{$regex:`${jobTitleSearch}`,$options:'i'}}]
     await job.find({$and:[{$or:[{"jobTitle":{$regex:`${jobTitleSearch}`,$options:'i'}},{"Company":{$regex:`${jobTitleSearch}`,$options:'i'}}]},{jobLocation:{$regex:`${location}`,$options:'i'}},{ jobType:{$regex:`${jobType}`,$options:'i'}}]}, function(err, result) {
         if (err) {
             console.log(err)

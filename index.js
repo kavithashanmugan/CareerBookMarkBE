@@ -1,13 +1,3 @@
-// const http = require('http');
-// const app = require('./app');
-// const port = process.env.PORT||3000;
-
-// app.set('port',port);
-// const server = http.createServer(app);
-
-// server.listen(port);
-
-// modules =================================================
 
 const express = require('express');
 const app = express();
@@ -55,6 +45,8 @@ var getOpenJobsByHirer = require('./routes/getOpenJobsByHirer');
 var getClosedJobsByHirer = require('./routes/getClosedJobsByHirer');
 var getAppliedJobs = require('./routes/getAppliedJobs');
 var getAppliedCandidates = require('./routes/getAppliedCandidates');
+var closeJob = require('./routes/closeJob');
+var searchPostedJobs = require('./routes/searchPostedJobs');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -97,6 +89,8 @@ app.use("/api",getOpenJobsByHirer);
 app.use("/api",getClosedJobsByHirer);
 app.use("/api",getAppliedJobs);
 app.use("/api",getAppliedCandidates);
+app.use("/api",closeJob);
+app.use("/api",searchPostedJobs);
 
 const port = process.env.PORT|| 4000;;
 console.log(port)
