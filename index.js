@@ -48,6 +48,7 @@ var getAppliedJobs = require('./routes/getAppliedJobs');
 var getAppliedCandidates = require('./routes/getAppliedCandidates');
 var closeJob = require('./routes/closeJob');
 var searchPostedJobs = require('./routes/searchPostedJobs');
+var testApi = require('./routes/testApi');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -92,6 +93,7 @@ app.use("/api",getAppliedJobs);
 app.use("/api",getAppliedCandidates);
 app.use("/api",closeJob);
 app.use("/api",searchPostedJobs);
+app.use("/api",testApi);
 
 const port = process.env.PORT|| 4000;;
 console.log(port)
