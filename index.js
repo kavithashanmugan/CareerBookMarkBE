@@ -49,6 +49,10 @@ var getAppliedCandidates = require('./routes/getAppliedCandidates');
 var closeJob = require('./routes/closeJob');
 var searchPostedJobs = require('./routes/searchPostedJobs');
 var testApi = require('./routes/testApi');
+var shortListCandidates = require('./routes/shortListCandidates');
+var rejectCandidates = require('./routes/rejectCandidates');
+var getRejectedCandidates = require('./routes/getRejectedCandidates');
+var getShortListedCandidates = require('./routes/getShortListedCandidates');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -71,11 +75,11 @@ app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 
 app.use("/api", createProfile);
 app.use("/api",signUpFireBase);
-app.use("/api", signUp);
-app.use("/api", getProfile);
-app.use("/api", login);
-app.use("/api", postJob);
-app.use("/api", getAllJobs);
+app.use("/api",signUp);
+app.use("/api",getProfile);
+app.use("/api",login);
+app.use("/api",postJob);
+app.use("/api",getAllJobs);
 app.use("/api",getJobById);
 app.use("/api",getAllProfiles);
 app.use("/api",signUpCompanyFireBase);
@@ -91,9 +95,13 @@ app.use("/api",getOpenJobsByHirer);
 app.use("/api",getClosedJobsByHirer);
 app.use("/api",getAppliedJobs);
 app.use("/api",getAppliedCandidates);
+app.use("/api",getRejectedCandidates);
 app.use("/api",closeJob);
 app.use("/api",searchPostedJobs);
 app.use("/api",testApi);
+app.use("/api",shortListCandidates);
+app.use("/api",rejectCandidates);
+app.use("/api",getShortListedCandidates);
 
 const port = process.env.PORT|| 4000;;
 console.log(port)
