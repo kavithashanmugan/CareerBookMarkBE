@@ -14,12 +14,20 @@ job.find(filter,"rejectedCandidates").exec(function(err, result)  {
         if (err) {
             console.log(err)
         } else {
-            console.log(result)
-            
+            //console.log(result)
+            if(result[0].rejectedCandidates.length==0){
+                res.status(200).json({
+                    "status": true,
+                    "result":result[0].rejectedCandidates,
+                    "message":"No Candidates Rejected"
+                });
+            }
+            else{
             res.status(200).json({
                 "status": true,
                 "result":result[0].rejectedCandidates
             });
+        }
         }
     });
 
