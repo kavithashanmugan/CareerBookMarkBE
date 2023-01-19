@@ -7,16 +7,6 @@ const UserProfile = require("../models/userProfile");
 
 router.post("/applyJob",async function (req, res) {
   console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
-  console.log("htting apply jobs hetrrer....................... job");
   const appliedObj = {"appliedJobs":{"jobId":req.body.jobId,"jobStatus":"Applied","jobTitle":req.body.jobTitle,"jobLocation":req.body.jobLocation,"Company":req.body.Company,"appliedOn":new Date()}}
   console.log("appliedObj",appliedObj)
   const applicantObj = {"appliedCandidates":{"userId":req.body.userId,"userStatus":"applied","fullName":req.body.fullName,"userJobTitle":req.body.userJobTitle,"userLocation":req.body.userLocation,"appliedOn":new Date()}}
